@@ -1,0 +1,20 @@
+# Helm
+*.tgz
+charts/
+.helm/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Secrets / overrides
+secrets.yaml
+*-secrets.yaml
+values-local.yaml
+values-override.yaml

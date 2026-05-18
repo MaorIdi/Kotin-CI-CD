@@ -1,0 +1,11 @@
+apiVersion: v2
+name: custom-jenkins
+description: A custom Jenkins Helm chart with pre-installed plugins
+type: application
+version: 0.1.0
+appVersion: "2.440.1" # Standardize on the Jenkins version you want
+
+dependencies:
+  - name: jenkins
+    version: 5.1.4 # Use the latest stable version of the jenkins helm chart
+    repository: "https://charts.jenkins.io"
