@@ -3,6 +3,8 @@ jenkins:
     image:
       tag: "2.565"
 
+    numExecutors: 3
+
     csrf:
       defaultCrumbIssuer:
         enabled: false
