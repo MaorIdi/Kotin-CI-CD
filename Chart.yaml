@@ -3,7 +3,7 @@ name: custom-jenkins
 description: A custom Jenkins Helm chart with pre-installed plugins
 type: application
 version: 0.1.0
-appVersion: "2.440.1" # Standardize on the Jenkins version you want
+appVersion: "2.492.3"
 
 dependencies:
   - name: jenkins

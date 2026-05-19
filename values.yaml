@@ -1,54 +1,45 @@
 jenkins:
-  installPlugins:
-    # --- Core Pipeline ---
-    - kubernetes:1.30.1
-    - workflow-aggregator:2.6
-    - workflow-multibranch:756.v891d88f2cd46
-    - pipeline-stage-view:2.34
-    - pipeline-github-lib:42.v0739460cda_c4
-    - branch-api:2.1144.v1c9df2e0e13b
+  controller:
+    image:
+      tag: "2.565"
 
-    # --- Git / GitHub ---
-    - git:4.10.0
-    - git-client:4.2.0
-    - github:1.36.0
-    - github-branch-source:1719.v5b_bf7c3e7a_5f
+    csrf:
+      defaultCrumbIssuer:
+        enabled: false
+    ingress:
+      enabled: true
+      hostName: jenkins.local
+      ingressClassName: traefik
+      
+    installPlugins:
+      - kubernetes:4203.v1dd44f5b_1cf9
+      - workflow-aggregator:596.v8c21c963d92d
+      - git
+      - configuration-as-code:2053.vb_0da_47381a_25
 
-    # --- Configuration ---
-    - configuration-as-code:1.51
+    additionalPlugins:
+      # --- Pipeline ---
+      - workflow-multibranch
+      - branch-api
 
-    # --- Build: Gradle (essential for KMP) ---
-    - gradle:2.7
+      # --- Git / GitHub ---
+      - github
+      - github-branch-source
 
-    # --- Credentials & Secrets (signing keys, API tokens) ---
-    - credentials:1254.vb_96b_74a_06e2a
-    - credentials-binding:604.vb_da_a_e0c1a_dc4
-    - plain-credentials:182.v468b_97b_9dcb_8
-    - ssh-credentials:305.v8f4381501156
-    - ssh-agent:346.vda_a_c4f2c8e5c
+      # --- Build ---
+      - gradle
 
-    # --- Test Reporting ---
-    - junit:1232.v6b_b_5e8a_03f66
-    - jacoco:3.3.5
+      # --- Credentials ---
+      - credentials-binding
+      - plain-credentials
+      - ssh-credentials
+      - ssh-agent
 
-    # --- Code Quality (Android Lint, detekt, ktlint reports) ---
-    - warnings-ng:10.5.0
-    - android-lint:3.1
+      # --- Test Reporting ---
+      - junit
 
-    # --- Notifications ---
-    - slack:705.vc0a_ecc1e1f9a
-    - mailer:470.vc91f60a_7b_98f
-    - email-ext:2.103
-
-    # --- Android Publishing ---
-    - google-play-android-publisher:4.0.0
-
-    # --- iOS Builds (requires macOS agent) ---
-    - xcode-plugin:2.0.17
-
-    # --- Utility ---
-    - timestamper:1.22
-    - ansicolor:1.0.4
-    - ws-cleanup:0.45
-    - build-timeout:1.32
-    - copyartifact:722.v4c2f6b_73f4d0
+      # --- Utility ---
+      - timestamper
+      - ansicolor
+      - ws-cleanup
+      - build-timeout
